@@ -1,15 +1,15 @@
- def fizzBuzz(self, n: int) -> List[str]:
-        mylist=['Fizz','Buzz','FizzBuzz']
-        outputlist=[]
+class Solution:
+    def fizzBuzz(self, n: int) -> List[str]:
+        answer=[]
         for x in range(1,n+1):
             
             if x%5==0 and i%3==0:
-                outputlist.append(mylist[2]) 
+                answer.append("FizzBuzz") 
             elif x%3==0:
-                outputlist.append(mylist[0])
+                answer.append("Fizz")
             elif x%5==0:
-                outputlist.append(mylist[1])
+                answer.append("Buzz")
         
             else:
-                outputlist.append(str(x))
-        return outputlist
+                answer.append(str(x))
+        return answer
