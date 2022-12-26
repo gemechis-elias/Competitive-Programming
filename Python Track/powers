@@ -1,0 +1,11 @@
+
+if __name__ == '__main__':
+    n = int(input())
+    ans = []
+    pw = []
+    for i in range(n):
+        ans.append(i)
+    for i in ans:
+        pw.append(pow(i, 2))
+    for i in pw:
+        print(i)
