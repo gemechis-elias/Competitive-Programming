@@ -1,4 +1,7 @@
-def balancedString(self, s):
+from collections import Counter
+
+class Solution:
+    def balancedString(self, s):
         count = collections.Counter(s)
         res = n = len(s)
         i = 0
