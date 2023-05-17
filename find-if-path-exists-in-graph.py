@@ -1,24 +1,29 @@
-from collections import defaultdict
 class Solution:
     def validPath(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
-        dic = defaultdict(list)
-        for k, v in edges:
-            dic[k].append(v)
-            dic[v].append(k)
+        graph = defaultdict(list)
+        parent = {}
+        rank = [1]  * (n+1)
+        
+        def representative(x):
+            if x not in parent:
+                parent[x] = x
+            elif x != parent[x]:
+                parent[x] = representative(parent[x])
+            return parent[x]
 
-        print(dic)
-        visited = set()
+        def union(x, y):
+            x_root = representative(x)
+            y_root = representative(y)
 
-        def dfs(node):
-            if node == destination: 
-                return True
-            
-            visited.add(node)
-            for node in dic[node]:
-                if node not in visited:
-                    if dfs(node):
-                        return True
-               
+            if rank[x_root] > rank[y_root]:
+                parent[x_root] = y_root
+            elif rank[x_root] <= rank[y_root]:
+                parent[y_root] = x_root
 
-
-        return dfs(source)
+        def connected(x, y):
+            return representative(x) == representative(y)
+        
+        for a,b in edges:
+            union(a,b)
+        
+        return connected(source,destination)
